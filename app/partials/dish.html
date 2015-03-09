@@ -1,0 +1,61 @@
+<!-- We include the sidebar as it is shared across two screens. -->
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="container-fluid" id="mainContainer">
+	<div class="row" id="mainRow">
+		<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
+
+		<div class="col-xs-9" id="meinFrame">
+			<p ng-if="!dishLoaded">{{status}}</p>
+
+			<div class="row" id="lasagneRow" ng-if="dishLoaded">
+
+				<div class="col-xs-6">
+					<div id="dishFrame">
+						<h3>
+							{{dish.Title}}
+						</h3>
+						<img ng-src="{{dish.ImageURL}}" class="img-responsive" alt="{{dish.Title}}">
+						<p>
+							{{dish.Description}}
+						</p>
+					</div>
+					<a class="btn" id="backButton" ng-href="#/search">
+						<span class="glyphicon glyphicon-chevron-left floatLeft"></span>
+						Back to Select Dish
+					</a>
+				</div>
+
+				<div class="col-xs-6" id="ingredientsFrame">
+					<h4 id="ingredientsTitle">
+						Ingredients for {{n()}} people
+					</h4>
+					<table id="ingredientsTable">
+						<tr ng-repeat="ingredient in dish.Ingredients">
+							<td width="20%">{{toFix(ingredient.Quantity * n())}} {{ingredient.Unit}}</td>
+							<td width="60%">{{ingredient.Name}}</td>
+							<td width="10%">SEK</td>
+							<td class="textAlignRight" width="10%">{{toFix(ingredient.Quantity * n())}}</td>
+						</tr>
+					</table>
+					<table width="100%">
+						<tr>
+							<td width="80%">
+								<button class="btn" id="confirmDishButton" ng-click="confirmDish(dish)" ng-if="inMenu(dish) == false">Confirm Dish</button>
+							</td>
+							<td width="10%">SEK</td>
+							<td id="totalPrice" class="textAlignRight" width="10%">
+								{{toFix(getTotalPrice(dish) * n())}}
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- TODO in Lab 5: Display the dish information including image, Description, 
+Instructions, Ingredients and total cost. -->

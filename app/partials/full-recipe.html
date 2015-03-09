@@ -1,0 +1,46 @@
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="container-fluid" id="mainContainer">
+	<div class="row" id="mainRow">
+		<div class="myDinnerSummaryFrame" id="myDinnerSummary">
+			<div class="row">
+				<div class="col-xs-6 col-sm-6">
+					My Dinner: {{getNumberOfGuests()}} people
+				</div>
+				<div class="col-xs-6 col-sm-6" id="myDinnerSummaryBackButtonFrame">
+					<a type="button" class="btn" id="goBack" ng-href="#/search">
+						<span class="glyphicon glyphicon-chevron-left floatLeft"></span>
+						 Go back and edit dinner
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid" id="prepFrame">
+			<div class="row" ng-repeat="dish in getMenu()">
+				<div class="col-xs-4 col-md-3">
+					<img ng-src="{{w}}" class="img-responsive dinnerPrepThumbnail" alt="Meatballs"/>
+				</div>
+
+				<div class="col-xs-8 col-md-4">
+					<h3>
+						{{dish.Title}}
+					</h3>
+
+					<p>
+						{{dish.Description}}
+					</p>
+				</div>
+
+				<div class="col-xs-12 col-md-5">
+					<h4>
+						PREPARATION
+					</h4>
+
+					<p>
+						{{dish.Instructions}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

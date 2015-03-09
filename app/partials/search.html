@@ -1,0 +1,66 @@
+<!-- We include the sidebar as it is shared across two screens. -->
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="container-fluid" id="mainContainer">
+	<div class="row" id="mainRow">
+		<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
+
+		<div class="col-xs-9" id="meinFrame">
+
+			<div class="row" id="dishChooser">
+				<div class="row">
+					<div class="col-xs-12" id="dishChooserHeadline">
+						<p id="select_dish">Select dish</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="dishChooserSearchFrame">
+						<input type="search" ng-model="query" placeholder="Enter key words" name="search" id="searchBox" />
+						<button class="btn" id="searchButton" ng-click="search(query)">Search</button>
+						<span id="searchResults" ng-if="searched">Found dishes: {{resultCount}}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="loading" ng-if="loading">
+				<img ng-src="images/Gif-loading-Christmas.gif"/>
+			</div>
+
+			<div class="loading" ng-if="error">
+				{{status}}
+			</div>
+
+			<div class="row" id="dishList" ng-if="!loading"> 
+				<a ng-href="#/dish/{{dish.RecipeID}}" ng-repeat="dish in dishes" class="col-md-3 col-sm-4 col-xs-6 dishObjectFrame" id="{{dish.RecipeID}}">
+					<div class="dishThumbFrame">
+						<div>
+							<img ng-src="{{dish.ImageURL}}" class="dishThumb" width="170" height="150"/>
+						</div>
+						<div class="dishTitle">
+							{{shortDishTitle(dish.Title, 36)}}
+							<!-- dishThumbStr += shortenDescription(dish["Title"], 38); -->
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<!-- {{status}} -->
+<!-- 
+<ul>
+	<li ng-repeat="dish in dishes">
+	<img ng-src="{{dish.ImageURL}}"/>
+	{{dish.Title}}
+	<a ng-href="#/dish/{{dish.RecipeID}}">View more</a>
+	{{dish.Category}} {{dish.Subcategory}}
+	</li>
+</ul> -->
+
+
+<!-- TODO in Lab 5: Display the input box for search (you can ignore the type dropdown since BigOven does
+not support it in free version) and list all the dishes that match the search.
