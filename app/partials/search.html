@@ -4,6 +4,8 @@
 	<div class="row" id="mainRow">
 		<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
 
+		
+
 		<div class="col-xs-9" id="meinFrame">
 
 			<div class="row" id="dishChooser">
@@ -21,15 +23,11 @@
 				</div>
 			</div>
 
-			<div class="loading" ng-if="loading">
-				<img ng-src="images/Gif-loading-Christmas.gif"/>
-			</div>
-
-			<div class="loading" ng-if="error">
+			<div class="col-xs-9" class="loading" ng-if="loading">
 				{{status}}
 			</div>
 
-			<div class="row" id="dishList" ng-if="!loading"> 
+			<div class="row" id="dishList" ng-if="!loading">
 				<a ng-href="#/dish/{{dish.RecipeID}}" ng-repeat="dish in dishes" class="col-md-3 col-sm-4 col-xs-6 dishObjectFrame" id="{{dish.RecipeID}}">
 					<div class="dishThumbFrame">
 						<div>

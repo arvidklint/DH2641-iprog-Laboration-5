@@ -35,4 +35,5 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
 	}
 
 	Dinner.setPendingPrice(0);
+	$scope.search("1");
 });
